@@ -1,0 +1,32 @@
+.profiles {
+  border: 1px solid #ccc;
+}
+
+.profile {
+  display: flex;
+  font-size: 0.7rem;
+}
+
+.profile__title {
+  display: flex;
+}
+
+.profile__name {
+  display: flex;
+  width: 15%;
+}
+
+.profile__email {
+  display: flex;
+  width: 45%;
+}
+
+.profile__phone {
+  display: flex;
+  width: 15%;
+}
+
+.profile__company {
+  display: flex;
+  width: 25%;
+}
