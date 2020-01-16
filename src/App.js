@@ -23,23 +23,17 @@ function App() {
   }
 
   function getSortedProfiles(data, key, isInit) {
-    let reversed = "0";
-    if (localStorage.getItem("key") === key) {
-      if (localStorage.getItem("reversed") === "1") {
-        console.log("WTF2");
-        reversed = "1";
-        if (isInit !== true) {
-          localStorage.setItem("reversed", "0");
-        }
-      } else {
-        if (isInit !== true) {
-          localStorage.setItem("reversed", "1");
-        }
-      }
-    } else if (isInit !== true) {
-      localStorage.setItem("key", key);
+    if (localStorage.getItem("key") !== key) {
       localStorage.setItem("reversed", "0");
     }
+    if (isInit !== true) {
+      if (localStorage.getItem("reversed") === "1") {
+        localStorage.setItem("reversed", "0");
+      } else {
+        localStorage.setItem("reversed", "1");
+      }
+    }
+    let reversed = localStorage.getItem("reversed");
 
     if (reversed === "0") {
       return data.concat().sort((first, second) => {
