@@ -25,6 +25,7 @@ function App() {
   function getSortedProfiles(data, key, isInit) {
     if (localStorage.getItem("key") !== key) {
       localStorage.setItem("reversed", "0");
+      localStorage.setItem("key", key);
     }
     if (isInit !== true) {
       if (localStorage.getItem("reversed") === "1") {
