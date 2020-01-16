@@ -38,14 +38,14 @@ function App() {
 
     if (reversed === "0") {
       return data.concat().sort((first, second) => {
-        if (first[key] > second[key]) {
+        if (first[key].toUpperCase() > second[key].toUpperCase()) {
           return 1;
         }
         return -1;
       });
     }
     return data.concat().sort((first, second) => {
-      if (first[key] < second[key]) {
+      if (first[key].toUpperCase() < second[key].toUpperCase()) {
         return 1;
       }
       return -1;
