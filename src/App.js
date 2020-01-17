@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import "./profiles/ProfilesList";
-import ProfilesList from "./profiles/ProfilesList";
+import "./components/profiles/ProfilesList";
+import ProfilesList from "./components/profiles/ProfilesList";
 
 function App() {
   const [profiles, setProfiles] = React.useState(fetchData);
