@@ -54,49 +54,27 @@ function App() {
 
   function sortByEvent(event) {
     event.preventDefault();
-    switch (event.target.className) {
-      case "profile__name":
-        setProfiles(getSortedProfiles(profiles, "Name"));
-        break;
-      case "profile__email":
-        setProfiles(getSortedProfiles(profiles, "Email"));
-        break;
-      case "profile__phone":
-        setProfiles(getSortedProfiles(profiles, "Phone"));
-        break;
-      case "profile__company":
-        setProfiles(getSortedProfiles(profiles, "Company"));
-        break;
-      default:
-        break;
-    }
+    setProfiles(getSortedProfiles(profiles, event.target.textContent));
   }
 
   return (
     <div className="wrapper">
-      <div className="profile__title">
-        <button className="profile__name" onClick={event => sortByEvent(event)}>
-          Name
-        </button>
-        <button
-          className="profile__email"
-          onClick={event => sortByEvent(event)}
-        >
-          Email
-        </button>
-        <button
-          className="profile__phone"
-          onClick={event => sortByEvent(event)}
-        >
-          Phone
-        </button>
-        <button
-          className="profile__company"
-          onClick={event => sortByEvent(event)}
-        >
-          Company
-        </button>
-      </div>
+      {profiles && (
+        <div className="profiles__title-bar">
+          {Object.keys(profiles[0]).map(key => {
+            return (
+              <button
+                key={"profiles__title-bar__element__" + key}
+                className="profiles__title-bar__element"
+                style={{ width: 100 / Object.keys(profiles[0]).length + "%" }}
+                onClick={event => sortByEvent(event)}
+              >
+                {key}
+              </button>
+            );
+          })}
+        </div>
+      )}
       <hr />
       {profiles && <ProfilesList profiles={profiles} />}
     </div>

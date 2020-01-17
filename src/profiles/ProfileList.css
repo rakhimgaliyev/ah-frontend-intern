@@ -7,26 +7,14 @@
   font-size: 0.7rem;
 }
 
-.profile__title {
-  display: flex;
+.profiles__title-bar .profiles__title-bar__element {
+  display: inline-flex;
+  font-size: 0.7rem;
+  height: 100px;
 }
 
-.profile__name {
-  display: flex;
-  width: 15%;
-}
-
-.profile__email {
-  display: flex;
-  width: 45%;
-}
-
-.profile__phone {
-  display: flex;
-  width: 15%;
-}
-
-.profile__company {
-  display: flex;
-  width: 25%;
+.profiles__item {
+  display: inline-flex;
+  font-size: 0.7rem;
+  overflow: hidden;
 }

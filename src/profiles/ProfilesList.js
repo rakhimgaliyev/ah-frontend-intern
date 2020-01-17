@@ -8,11 +8,18 @@ function ProfileList(props) {
         <div>
           {props.profiles.map((profile, index) => {
             return (
-              <div key={index} className="profile">
-                <div className="profile__name">{profile.Name}</div>
-                <div className="profile__email">{profile.Email}</div>
-                <div className="profile__phone">{profile.Phone}</div>
-                <div className="profile__company">{profile.Company}</div>
+              <div key={index}>
+                {Object.keys(profile).map(key => {
+                  return (
+                    <div
+                      key={key}
+                      className={"profiles__item " + key}
+                      style={{ width: 100 / Object.keys(profile).length + "%" }}
+                    >
+                      {profile[key]}
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
