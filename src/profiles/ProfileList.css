@@ -7,10 +7,11 @@
   font-size: 0.7rem;
 }
 
-.profiles__title-bar .profiles__title-bar__element {
+.profiles__title-element {
   display: inline-flex;
   font-size: 0.7rem;
-  height: 100px;
+  height: 50px;
+  justify-content: center;
 }
 
 .profiles__item {

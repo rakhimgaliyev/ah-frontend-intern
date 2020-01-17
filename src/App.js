@@ -60,12 +60,12 @@ function App() {
   return (
     <div className="wrapper">
       {profiles && (
-        <div className="profiles__title-bar">
+        <div>
           {Object.keys(profiles[0]).map(key => {
             return (
               <button
                 key={"profiles__title-bar__element__" + key}
-                className="profiles__title-bar__element"
+                className="profiles__title-element"
                 style={{ width: 100 / Object.keys(profiles[0]).length + "%" }}
                 onClick={event => sortByEvent(event)}
               >
