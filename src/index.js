@@ -8,11 +8,18 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 import allReducers from "./reducers/index";
+import { setData } from "./actions/index";
+
+import fetchProfiles from "./repository/index";
 
 let store = createStore(
   allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+fetchProfiles().then(data => {
+  store.dispatch(setData(data));
+});
 
 ReactDOM.render(
   <Provider store={store}>
