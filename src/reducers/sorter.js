@@ -1,31 +1,42 @@
+function directSort(data, key) {
+  if (data === null || data === undefined) {
+    return [];
+  }
+  return data.concat().sort((first, second) => {
+    if (first[key].toUpperCase() > second[key].toUpperCase()) {
+      return 1;
+    }
+    return -1;
+  });
+}
+
 function getSortedArray(data, key, isInit) {
   if (data === null || data.length === 0) {
     return [];
   }
 
+  if (isInit === true) {
+    let result = directSort(data, key);
+    if (localStorage.getItem("reversed") === "1") {
+      return result.reverse();
+    }
+    return result;
+  }
+
   if (localStorage.getItem("key") !== key) {
     localStorage.setItem("reversed", "0");
     localStorage.setItem("key", key);
-  }
-
-  if (isInit !== true) {
-    if (localStorage.getItem("reversed") === "1") {
-      localStorage.setItem("reversed", "0");
-    } else {
+  } else {
+    if (localStorage.getItem("reversed") === "0") {
       localStorage.setItem("reversed", "1");
+    } else {
+      localStorage.setItem("reversed", "0");
     }
     return data.reverse();
   }
 
-  let reversed = localStorage.getItem("reversed");
-
-  if (reversed === "0") {
-    return data.concat().sort((first, second) => {
-      if (first[key].toUpperCase() > second[key].toUpperCase()) {
-        return 1;
-      }
-      return -1;
-    });
+  if (localStorage.getItem("reversed") === "0") {
+    return directSort(data, key);
   }
   return data.reverse();
 }
