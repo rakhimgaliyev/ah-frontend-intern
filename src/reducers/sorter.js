@@ -25,18 +25,14 @@ function getSortedArray(data, key, isInit) {
     return result;
   }
 
-  if (!ProfilesSortStorage.isProfilesSortKeyEquals(key)) {
-    ProfilesSortStorage.setProfilesSortKey(key);
-    ProfilesSortStorage.discardProfilesOrderStatus();
-  } else {
+  if (ProfilesSortStorage.isProfilesSortKeyEquals(key)) {
     ProfilesSortStorage.changeProfilesOrderStatus();
     return data.concat().reverse();
   }
 
-  if (!ProfilesSortStorage.isProfilesOrderReversed()) {
-    return directSort(data, key);
-  }
-  return data.concat().reverse();
+  ProfilesSortStorage.setProfilesSortKey(key);
+  ProfilesSortStorage.discardProfilesOrderStatus();
+  return directSort(data, key);
 }
 
 function setData(data) {
