@@ -1,3 +1,5 @@
+import { ProfilesSortStorage } from "../repository/localStorage/profilesSortStorage";
+
 function directSort(data, key) {
   if (data === null || data === undefined) {
     return [];
@@ -17,28 +19,24 @@ function getSortedArray(data, key, isInit) {
 
   if (isInit === true) {
     let result = directSort(data, key);
-    if (localStorage.getItem("reversed") === "1") {
+    if (ProfilesSortStorage.isProfilesOrderReversed()) {
       return result.reverse();
     }
     return result;
   }
 
-  if (localStorage.getItem("key") !== key) {
-    localStorage.setItem("reversed", "0");
-    localStorage.setItem("key", key);
+  if (!ProfilesSortStorage.isProfilesSortKeyEquals(key)) {
+    ProfilesSortStorage.setProfilesSortKey(key);
+    ProfilesSortStorage.discardProfilesOrderStatus();
   } else {
-    if (localStorage.getItem("reversed") === "0") {
-      localStorage.setItem("reversed", "1");
-    } else {
-      localStorage.setItem("reversed", "0");
-    }
-    return data.reverse();
+    ProfilesSortStorage.changeProfilesOrderStatus();
+    return data.concat().reverse();
   }
 
-  if (localStorage.getItem("reversed") === "0") {
+  if (!ProfilesSortStorage.isProfilesOrderReversed()) {
     return directSort(data, key);
   }
-  return data.reverse();
+  return data.concat().reverse();
 }
 
 function setData(data) {

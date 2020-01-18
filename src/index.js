@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import allReducers from "./reducers/index";
 import { setData } from "./actions/index";
 
-import fetchProfiles from "./repository/index";
+import fetchProfiles from "./repository/serverApi/index";
 
 let store = createStore(
   allReducers,
